@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LOST CIVILIZATION — Secrets Beneath the Ruins</title>
+<link rel="stylesheet" href="style.css">
+<!-- A-Frame from CDN. If you want to try a newer version, change the number in this URL. -->
+<script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+</head>
+<body>
+
+<a-scene id="scene" renderer="antialias:true;colorManagement:true" shadow="type:pcfsoft" fog="type:exponential;color:#c9a066;density:0.012" vr-mode-ui="enabled:false" loading-screen="enabled:false" game>
+  <a-entity id="world"></a-entity>
+  <a-sky id="sky" color="#d9a76a"></a-sky>
+  <a-entity id="rig" position="0 0 60">
+    <a-entity id="cam" camera="fov:70" look-controls="pointerLockEnabled:true;reverseMouseDrag:false" position="0 1.6 0">
+      <a-entity id="flash" light="type:spot;color:#ffe9c0;intensity:0;angle:28;penumbra:0.6;distance:35;decay:1.5" position="0.2 -0.2 0" rotation="0 0 0"></a-entity>
+    </a-entity>
+  </a-entity>
+</a-scene>
+
+<!-- Title screen -->
+<div id="title" class="screen">
+  <div class="rays"></div>
+  <h1>LOST CIVILIZATION</h1>
+  <h2>Secrets Beneath the Ruins</h2>
+  <p>An Interactive 3D Archaeological Expedition</p>
+  <button id="begin" class="gold">BEGIN EXPEDITION</button>
+  <small>WASD move · Mouse look · Shift run · E interact · F flashlight · M map · J journal · Esc pause</small>
+</div>
+
+<!-- Loading screen -->
+<div id="loader" class="screen hidden">
+  <h2>DISCOVERING THE LOST CITY</h2>
+  <div class="bar"><div id="barfill"></div></div>
+  <p id="loadtext">Preparing expedition...</p><p id="loadpct">0%</p>
+</div>
+
+<!-- HUD -->
+<div id="hud" class="hidden">
+  <div id="hudname" class="glass">LOST CIVILIZATION</div>
+  <div id="objective" class="glass"></div>
+  <div id="prompt" class="glass hidden"></div>
+  <div id="keys" class="glass">WASD move<br>[E] interact</div>
+  <div id="keys2" class="glass">M map · J journal<br>F flashlight <span id="batt">100%</span></div>
+  <div id="notes"></div>
+  <div id="subtitle" class="hidden"></div>
+  <div id="joy" class="touch"><div id="knob"></div></div>
+  <div class="touch" id="tbtns"><button id="tE">E</button><button id="tM">MAP</button><button id="tJ">J</button><button id="tF">F</button></div>
+</div>
+
+<!-- Reusable information panel (artifacts, clues, map, journal) -->
+<div id="panel" class="glass hidden">
+  <h3 id="ptitle"></h3>
+  <div id="pbody"></div>
+  <button id="pclose" class="gold">CLOSE</button>
+</div>
+
+<!-- Pause / settings -->
+<div id="pause" class="screen hidden">
+  <h2>EXPEDITION PAUSED</h2>
+  <div class="row">TIME <button data-time="0">DAY</button><button data-time="1">SUNSET</button><button data-time="2">NIGHT</button></div>
+  <div class="row">WEATHER <button data-wx="clear">CLEAR</button><button data-wx="fog">FOGGY</button><button data-wx="rain">RAIN</button></div>
+  <div class="row">QUALITY <button data-q="HIGH">HIGH</button><button data-q="MEDIUM">MEDIUM</button><button data-q="LOW">LOW</button></div>
+  <div class="row">SOUND <button id="snd">OFF</button> <button id="fx">REDUCED EFFECTS: OFF</button></div>
+  <div class="row"><button id="save">SAVE PROGRESS</button><button id="reset">RESET PROGRESS</button></div>
+  <button id="resume" class="gold">RESUME</button>
+</div>
+
+<!-- Ending -->
+<div id="end" class="screen hidden">
+  <h1>EXPEDITION COMPLETE</h1>
+  <p>You uncovered the ruins.<br>You translated their story.<br>You discovered why they disappeared.<br><br>But one question remains...</p>
+  <h2>WHO WILL DISCOVER WHAT YOU LEFT BEHIND?</h2>
+  <div class="row"><button id="again">EXPLORE AGAIN</button><button id="endj">VIEW JOURNAL</button><button id="city" class="gold">RETURN TO CITY</button></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
